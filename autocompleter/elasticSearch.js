@@ -37,11 +37,6 @@ function indexExists() {
 }
 exports.indexExists = indexExists; 
 
-indexExists.then(function (exists) {  
-  if (exists) { 
-    return deleteIndex(); 
-  } 
-}).then(initIndex);
 
 function initMapping() {  
     return elasticClient.indices.putMapping({
@@ -49,13 +44,13 @@ function initMapping() {
         type: "document",
         body: {
             properties: {
-                title: { type: "string" },
-                content: { type: "string" },
+                title: { type: "text" },
+                content: { type: "text" },
                 suggest: {
                     type: "completion",
                     analyzer: "simple",
                     search_analyzer: "simple",
-                    payloads: true
+                    
                 }
             }
         }
@@ -95,3 +90,4 @@ function getSuggestions(input) {
     })
 }
 exports.getSuggestions = getSuggestions;
+
