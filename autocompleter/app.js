@@ -50,8 +50,7 @@ elastic.indexExists().then(function (exists) {
 }).then(function () {
   return elastic.initIndex().then(elastic.initMapping).then(function () {
     
-    //Add a few titles for the autocomplete
-    //elasticsearch offers a bulk functionality as well, but this is for a different time
+    
     var promises = [
       'Thing Explainer',
       'The Internet Is a Playground',

@@ -44,13 +44,12 @@ function initMapping() {
         type: "document",
         body: {
             properties: {
-                title: { type: "text" },
+                title: { type: "string" },
                 content: { type: "text" },
                 suggest: {
                     type: "completion",
                     analyzer: "simple",
-                    search_analyzer: "simple",
-                    
+                    search_analyzer: "simple"                   
                 }
             }
         }
@@ -67,8 +66,7 @@ function addDocument(document) {
             content: document.content,
             suggest: {
                 input: document.title.split(" "),
-                output: document.title,
-                payload: document.metadata || {}
+                output: document.title
             }
         }
     });
